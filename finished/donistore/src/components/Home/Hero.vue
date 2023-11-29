@@ -1,9 +1,19 @@
+<script setup>
+import { computed } from 'vue'
+import { useAuthStore } from '../../stores/auth'
+const auth = useAuthStore()
+
+const title = computed(() => {
+  return !auth.user ? 'Doni Store' : `Hola ${auth.user.name.firstname}!`
+})
+</script>
+
 <template>
   <div class="h-96 text-white text-center grid bg-cover bg-[url('/bg.jpg')]">
     <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-70 w-full h-full"></div>
     <div class="col-start-1 row-start-1 mx-auto my-auto">
       <Transition name="hero-title" appear>
-        <h1 class="text-8xl font-bold mt-2">Doni Store</h1>
+        <h1 class="text-8xl font-bold mt-2">{{ title }}</h1>
       </Transition>
       <Transition name="hero-description" appear>
         <p class="text-2xl">Los mejores productos del mercado</p>

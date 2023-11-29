@@ -4,38 +4,17 @@ import { ref } from 'vue'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
-  modelValue: {
+  rate: {
     type: Number,
-    required: false,
+    required: true,
     default: 0
-  },
-  stars: {
-    type: Number,
-    required: false,
-    default: 10
   }
 })
-
-const hoverValue = ref(0)
-
-function onSetRating(value) {
-  if (props.modelValue === value) {
-    return emit('update:modelValue', 0)
-  }
-
-  emit('update:modelValue', value)
-}
 </script>
 
 <template>
-  <div @mouseleave="hoverValue = 0" class="mx-auto flex gap-1 items-center">
-    <button
-      v-for="star in stars"
-      :key="`rating-${star}`"
-      @click="onSetRating(star)"
-      @mouseover="hoverValue = star"
-      class="focus:outline-none"
-    >
+  <div class="mx-auto flex gap-1 items-center">
+    <button v-for="star in 5" :key="`rating-${star}`" class="focus:outline-none">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -43,7 +22,7 @@ function onSetRating(value) {
         :class="[
           '-mx-1 h-7 w-7 text-gray-300 transition duration-75',
           {
-            'text-yellow-500': (modelValue >= star && !hoverValue) || hoverValue >= star
+            'text-yellow-500': rate >= star
           }
         ]"
       >

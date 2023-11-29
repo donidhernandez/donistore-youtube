@@ -27,7 +27,7 @@ const { title, id, image, price, rating } = product
           <span class="text-3xl font-bold text-slate-900">${{ price }}</span>
         </p>
         <div class="flex items-center">
-          <StarRating v-model="rating.rate" :stars="5" />
+          <StarRating :rate="rating.rate" />
           <span class="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">{{
             rating.rate
           }}</span>

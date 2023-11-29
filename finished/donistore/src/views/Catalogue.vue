@@ -2,14 +2,13 @@
 import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import axios from 'axios'
+import ProductCard from '../components/common/ProductCard.vue'
 const API_URL = import.meta.env.VITE_API_URL
-
-import ProductCard from '../common/ProductCard.vue'
 
 const products = ref([])
 
 onMounted(async () => {
-  const productsRes = await axios.get(`${API_URL}/products?limit=8`)
+  const productsRes = await axios.get(`${API_URL}/products`)
   products.value = productsRes.data
 })
 
@@ -20,7 +19,7 @@ function onBeforeEnter(el) {
 function onEnter(el, done) {
   gsap.to(el, {
     opacity: 1,
-    transform: 'translate(12px, 10%)',
+    transform: 'translate(12px,10%)',
     delay: el.dataset.index * 0.3,
     onComplete: done
   })
@@ -30,10 +29,10 @@ function onEnter(el, done) {
 <template>
   <section class="lg:max-w-8xl mx-auto min-h-screen py-32 flex flex-col items-center">
     <div class="flex flex-col mb-10">
-      <h2 class="text-5xl text-center font-black">Nuestros productos más vendidos</h2>
+      <h1 class="text-6xl text-center font-black">Nuestro catálogo de productos</h1>
       <p class="text-lg">
-        Explora nuestra selección de productos más vendidos. Calidad y estilo que te encantarán.
-        ¡Haz tu compra ahora!
+        Explora nuestro catálogo de productos. Calidad y estilo que te encantarán. ¡Haz tu compra
+        ahora!
       </p>
     </div>
 
